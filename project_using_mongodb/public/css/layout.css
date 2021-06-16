@@ -1,0 +1,21 @@
+.flex-container {
+    width: 100%;
+    display: flex;
+    background-color: DodgerBlue;
+    
+}
+
+.b1 {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 10px;
+    font-size: 70%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.fruit {
+    margin: 1rem 0;
+    padding: 5px;
+    border: 1px solid black;
+}
