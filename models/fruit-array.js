@@ -33,7 +33,7 @@ exports.updateFruit = (id, name, price) => {
 // DELETE
 exports.deleteFruit = (id) => {
     for (let i = 0; i < fruits.length; i++) {
-        console.log('del: ',fruits[i]);
+        console.log('del: ', fruits[i]);
         if (fruits[i].id == id) {
             fruits.splice(i, 1);
         };

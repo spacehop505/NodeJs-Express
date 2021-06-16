@@ -50,9 +50,6 @@ router.post('/delete/', exports.postDelete = (req, res) => {
 });
 
 
-
-
-
 // SEARCH BY NAME
 router.get('/:name', exports.getFruit = (req, res) => {
 
