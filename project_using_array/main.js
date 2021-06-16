@@ -3,11 +3,11 @@ const path = require('path');
 // EXPRESS
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 // CONTROLLER 
-const serverController = require('./controllers/default-cotroller');
-const errorController = require('./controllers/error');
+const serverController = require('./controllers/index-cotroller.js');
+const errorController = require('./controllers/404-controller.js');
 
 // EJS for HTML
 app.set('view engine', 'ejs');
@@ -17,9 +17,8 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // BODY PARSER
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(express.urlencoded({extended: true}));
+//app.use(express.json());
 
 // CONTROLLER 
 app.use('/', serverController);
@@ -27,4 +26,6 @@ app.use(errorController.get404);
 
 
 // EXPRESS PORT
-app.listen(3000);
+app.listen(3000, function () {
+    console.log("nodejs web app running");
+});

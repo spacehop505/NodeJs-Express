@@ -3,22 +3,20 @@ const express = require('express');
 const router = express.Router();
 
 // FRUIT - Class, Array
-const Fruits = require('../models/fruit');
-const Fruit_Array = require('../models/fruit-array');
-
+const Fruits = require('../models/fruit.js');
+const Fruit_Array = require('../models/fruit-array.js');
 
 // GET - RENDER html.ejs
 router.get('/', exports.getSettings = (req, res) => {
     console.log('GET: ', req.url);
 
+    printFruit();
     const fruits = Fruit_Array.fetchAll();
-
-    res.render('settings.ejs', {
-        pageTitle: 'Settings',
+    res.render('index.ejs', {
+        pageTitle: 'index',
         fruits_key: fruits
     });
 });
-
 
 // CREATE
 router.post('/create', exports.postCreate = (req, res) => {
@@ -30,6 +28,8 @@ router.post('/create', exports.postCreate = (req, res) => {
 
     const fruits = new Fruits(id, name, price);
     Fruit_Array.addFruit(fruits);
+
+    printFruit();
     res.redirect('/');
 });
 
@@ -38,6 +38,9 @@ router.post('/update/', exports.postUpdate = (req, res) => {
     console.log('UPDATE: ', req.url);
 
     Fruit_Array.updateFruit(req.body.html_id, req.body.html_name, req.body.html_price);
+    
+    printFruit();
+
     res.redirect('/');
 });
 
@@ -46,12 +49,14 @@ router.post('/delete/', exports.postDelete = (req, res) => {
     console.log('DELETE: ', req.url);
 
     Fruit_Array.deleteFruit(req.body.html_id);
+   
+    printFruit();
+   
     res.redirect('/');
 });
 
-
 // SEARCH BY NAME
-router.get('/:name', exports.getFruit = (req, res) => {
+router.get('/found/:name', exports.getFruit = (req, res) => {
 
     const fruit = Fruit_Array.searchFruit(req.params.name);
     console.log(fruit);
@@ -72,5 +77,9 @@ router.get('/:name', exports.getFruit = (req, res) => {
     }
 });
 
+printFruit = () => {
+    const fruits = Fruit_Array.fetchAll();
+    console.log(fruits, '\n');
+};
 
 module.exports = router;

@@ -12,16 +12,12 @@
                 <h1>Create Fruit</h1>
                 <form class='product-form' action="create" method="POST">
                     <div class="form-control">
-                        <label for="id">Enter ID</label>
-                        <input autocomplete="false" type="text" name="html_id" id="id"><br>
-                    </div>
-                    <div class="form-control">
                         <label for="name">Enter Name</label>
-                        <input autocomplete="false" type="text" name="html_name" id="name"><br>
+                        <input type="text" name="html_name" id="name"><br>
                     </div>
                     <div class="form-control">
                         <label for="price">Enter Price</label>
-                        <input autocomplete="false" type="text" name="html_price" id="price"><br>
+                        <input type="text" name="html_price" id="price"><br>
                     </div>
                     <button class="btn" type="submit">Submit</button>
                 </form>
@@ -29,18 +25,18 @@
 
             <div class="b1">
                 <h1>Update Fruit</h1>
-                <form class='product-form' autocomplete="off" action="/update" method="POST">
+                <form class='product-form' action="/update" method="POST">
                     <div class="form-control">
                         <label for="id">Enter ID</label>
-                        <input autocomplete="false" type="text" name="html_id" id="id"><br>
+                        <input type="text" name="html_id" id="id"><br>
                     </div>
                     <div class="form-control">
                         <label for="name">Enter Name</label>
-                        <input autocomplete="false" type="text" name="html_name" id="name"><br>
+                        <input type="text" name="html_name" id="name"><br>
                     </div>
                     <div class="form-control">
                         <label for="price">Enter Price</label>
-                        <input autocomplete="false" type="text" name="html_price" id="price"><br>
+                        <input type="text" name="html_price" id="price"><br>
                     </div>
                     <button class="btn" type="submit">Submit</button>
                 </form>
@@ -51,7 +47,7 @@
                 <form class='product-form' action="/delete" method="POST">
                     <div class="form-control">
                         <label for="id">Enter ID</label>
-                        <input autocomplete="false" type="text" name="html_id" id="id"><br>
+                        <input type="text" name="html_id" id="id"><br>
                     </div>
                     <button class="btn" type="submit">Submit</button>
                 </form>
@@ -62,20 +58,14 @@
             <div class="b1">
                 <h1>Read Fruit</h1>
                 <% if (fruits_key.length > 0) { %>
-                <div id='box1'>
                     <% for(let fruit of fruits_key) { %>
                     <div class="fruit">
-                        <div id='box2'>
-                            <h3>ID: <%= fruit.id %></h3>
-                            <h3>Name: <%= fruit.name %></h3>
-                            <h3>Price: <%= fruit.price %></h3>
-                            <a href="/<%= fruit.id %>" class="btn">Details</a>
-                           
-                        </div>
-
+                            <p>ID: <%= fruit.id %></p>
+                            <p>Name: <%= fruit.name %></p>
+                            <p>Price: <%= fruit.price %></p>
+                            <a href="found/<%= fruit.id %>" class="btn">Details</a>
                     </div>
                     <% } %>
-                </div>
                 <% } else { %>
                 <h1>No Products Found!</h1>
                 <% } %>
