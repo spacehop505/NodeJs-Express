@@ -70,14 +70,16 @@
                             <h3>Name: <%= fruit.name %></h3>
                             <h3>Price: <%= fruit.price %></h3>
                             <a href="/found/<%= fruit.id %>" class="btn">Details</a>
-                           
+
                         </div>
 
                     </div>
                     <% } %>
                 </div>
                 <% } else { %>
-                <h1>No Products Found!</h1>
+                <div class="fruit">
+                    <h1>No Products Found!</h1>
+                </div>
                 <% } %>
             </div>
         </div>

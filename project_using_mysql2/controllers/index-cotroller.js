@@ -4,52 +4,48 @@ const router = express.Router();
 
 // FRUIT - Class, Array
 const Fruits = require('../models/fruit.js');
-const Fruit_Array = require('../models/fruit-bd.js');
+const Fruit_Database = require('../models/fruit-bd.js');
 
 // GET
 router.get('/', exports.getIndex = (req, res) => {
-    console.log('GET: ', req.url);
+    console.log('\nGET: ', req.url);
 
-    Fruit_Array.fetchAll().then(([fruits]) => {
-
+    Fruit_Database.fetchAll()
+        .then(([fruits]) => {
             console.log(fruits);
-
             res.render('index.ejs', {
                 pageTitle: 'Root',
                 fruits_key: fruits
             });
-
-        })
-        .catch(err => console.log(err));
+        }).catch(err => console.log(err));
 
 });
 
 // SEARCH BY ID
 router.get('/found/:id', exports.getFruit = (req, res) => {
+    console.log('\nGET: ', req.url);
+
     const id = req.params.id;
-    Fruit_Array.searchFruit(id)
+
+    Fruit_Database.searchFruit(id)
         .then(([fruit]) => {
             console.log(fruit);
-            if(fruit.length == 0){
+            if (fruit.length == 0) {
                 res.render('404.ejs', {
                     url: req.url,
                     pageTitle: 'search'
                 });
-            }else{
+            } else {
                 res.render('found.ejs', {
                     url: req.url,
-                    param:  req.params.id,
+                    param: req.params.id,
                     id: fruit[0].id,
                     name: fruit[0].name,
                     price: fruit[0].price,
                     pageTitle: 'search'
                 });
             }
-
-          
-
-        })
-        .catch(err => console.log(err));
+        }).catch(err => console.log(err));
 });
 
 // CREATE
@@ -60,11 +56,13 @@ router.post('/create', exports.postCreate = (req, res) => {
     const price = req.body.html_price;
     const fruits = new Fruits(null, name, price);
 
-    Fruit_Array.addFruit(fruits)
+    Fruit_Database.addFruit(fruits)
         .then(() => {
             res.redirect('/');
-        })
-        .catch(err => console.log(err));
+        }).catch(err => {
+            res.redirect('/');
+            console.log(err)
+        });
 });
 
 // UPDATE
@@ -76,22 +74,26 @@ router.post('/update', exports.postUpdate = (req, res) => {
     const price = req.body.html_price;
     const fruits = new Fruits(id, name, price);
 
-    Fruit_Array.updateFruit(fruits).
-    then(() => {
+    Fruit_Database.updateFruit(fruits)
+        .then(() => {
             res.redirect('/');
-        })
-        .catch(err => console.log(err));
+        }).catch(err => {
+            res.redirect('/');
+            console.log(err)
+        });
 });
 
 // DELETE
-router.post('/delete', exports.postDelete = (req, res) => {
+router.post('/delete', exports.postDelete = (req, res, next) => {
     console.log('DELETE: ', req.url);
 
-    Fruit_Array.deleteFruit(req.body.html_id)
+    Fruit_Database.deleteFruit(req.body.html_id)
         .then(() => {
             res.redirect('/');
-        })
-        .catch(err => console.log(err));
+        }).catch(err => {
+          //  res.redirect('/');
+            console.log(err);
+        });
 });
 
 

@@ -58,18 +58,20 @@
             <div class="b1">
                 <h1>Read Fruit</h1>
                 <% if (fruits_key.length > 0) { %>
-                    <% for(let fruit of fruits_key) { %>
-                    <div class="fruit">
-                            <p>ID: <%= fruit.id %></p>
-                            <p>Name: <%= fruit.name %></p>
-                            <p>Price: <%= fruit.price %></p>
-                            <p>createdAt: <%= fruit.createdAt %></p>
-                            <p>updatedAt: <%= fruit.updatedAt %></p>
-                            <a href="found/<%= fruit.id %>" class="btn">Details</a>
-                    </div>
-                    <% } %>
+                <% for(let fruit of fruits_key) { %>
+                <div class="fruit">
+                    <p>ID: <%= fruit.id %></p>
+                    <p>Name: <%= fruit.name %></p>
+                    <p>Price: <%= fruit.price %></p>
+                    <p>createdAt: <%= fruit.createdAt %></p>
+                    <p>updatedAt: <%= fruit.updatedAt %></p>
+                    <a href="found/<%= fruit.id %>" class="btn">Details</a>
+                </div>
+                <% } %>
                 <% } else { %>
-                <h1>No Products Found!</h1>
+                <div class="fruit">
+                    <h1>No Products Found!</h1>
+                </div>
                 <% } %>
             </div>
         </div>

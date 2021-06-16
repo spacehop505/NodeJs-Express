@@ -1,4 +1,3 @@
-//const logger = require('morgan');
 const path = require('path');
 
 // EXPRESS
@@ -13,13 +12,11 @@ const errorController = require('./controllers/404-control.js');
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-
 // ALLOW TO USE PUBLIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
 
 // BODY PARSER
 app.use(express.urlencoded({extended: true}));
-//app.use(express.json());
 
 // <---[CONTROLLERS]---> 
 app.use('/', serverController);

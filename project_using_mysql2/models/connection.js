@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 
+// config
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -7,4 +8,5 @@ const pool = mysql.createPool({
     password: 'admin'
 });
 
+// promise() use .then().catch()
 module.exports = pool.promise();
