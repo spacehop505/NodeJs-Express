@@ -1,0 +1,79 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/layout.css">
+</head>
+
+<body>
+    <%- include('includes/navigation.ejs') %>
+
+    <main>
+        <div class="flex-container">
+            <div class="b1">
+                <h1>Create Fruit</h1>
+                <form class='product-form' action="create" method="POST">
+                    <div class="form-control">
+                        <label for="name">Enter Name</label>
+                        <input type="text" name="html_name" id="name"><br>
+                    </div>
+                    <div class="form-control">
+                        <label for="price">Enter Price</label>
+                        <input type="text" name="html_price" id="price"><br>
+                    </div>
+                    <button class="btn" type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="b1">
+                <h1>Update Fruit</h1>
+                <form class='product-form' action="/update" method="POST">
+                    <div class="form-control">
+                        <label for="id">Enter ID</label>
+                        <input type="text" name="html_id" id="id"><br>
+                    </div>
+                    <div class="form-control">
+                        <label for="name">Enter Name</label>
+                        <input type="text" name="html_name" id="name"><br>
+                    </div>
+                    <div class="form-control">
+                        <label for="price">Enter Price</label>
+                        <input type="text" name="html_price" id="price"><br>
+                    </div>
+                    <button class="btn" type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="b1">
+                <h1>Delete Fruit</h1>
+                <form class='product-form' action="/delete" method="POST">
+                    <div class="form-control">
+                        <label for="id">Enter ID</label>
+                        <input type="text" name="html_id" id="id"><br>
+                    </div>
+                    <button class="btn" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <div class="b1">
+                <h1>Read Fruit</h1>
+                <% if (fruits_key.length > 0) { %>
+                    <% for(let fruit of fruits_key) { %>
+                    <div class="fruit">
+                            <p>ID: <%= fruit.id %></p>
+                            <p>Name: <%= fruit.name %></p>
+                            <p>Price: <%= fruit.price %></p>
+                            <p>createdAt: <%= fruit.createdAt %></p>
+                            <p>updatedAt: <%= fruit.updatedAt %></p>
+                            <a href="found/<%= fruit.id %>" class="btn">Details</a>
+                    </div>
+                    <% } %>
+                <% } else { %>
+                <h1>No Products Found!</h1>
+                <% } %>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
