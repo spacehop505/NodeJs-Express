@@ -19,9 +19,9 @@ exports.fetchAll = () => {
 // READ SEARCH
 exports.searchFruit = (id) => {
     const db = getDb();
-    return db.collection('fruits').find({
+    return db.collection('fruits').findOne({
         _id: new mongodb.ObjectID(id)
-    }).toArray();
+    });
 };
 
 // UPDATE
